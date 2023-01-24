@@ -65,6 +65,21 @@ class T4CApi:
         return self._handle_response(response)
 
     def save_sire(self, data):
+        """example of request
+        {"Id":0,
+        "SireName":"",
+        "LifeNumber":"",
+        "SireCode":"",
+        "SireDescription":"",
+        "Active":true,
+        "InFarm":false,
+        "CheckLifeNumber":false,
+        "AnimalNumber":""}"""
         response = requests.post(self.host + '/api/v2/sire', json=data, headers=self.headers)
+        return self._handle_response(response)
+
+    def getInseminationHistoryData(self, animalId):
+        #get request with animalId
+        response = requests.get(self.host + '/api/cowcard/inseminations' + '?animalId=' + str(animalId), headers=self.headers)
         return self._handle_response(response)
 
